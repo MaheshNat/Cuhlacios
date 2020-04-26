@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const cron = require('cron')
 
-require('dotenv').config()
+require('dotenv').config();
 
 const client = new Discord.Client()
 client.commands = new Discord.Collection()
