@@ -5,20 +5,20 @@ module.exports = {
   name: 'random',
   description:
     'Sends a random google image based on the search term which follows',
-  execute(message, args) {
-    let searchTerm = args.splice(1, args.length).join(' ');
+  execute (message, args) {
+    const searchTerm = args.splice(1, args.length).join(' ');
     var options = {
       url: 'http://results.dogpile.com/serp?qc=images&q=' + searchTerm,
       method: 'GET',
       headers: {
         Accept: 'text/html',
-        'User-Agent': 'Chrome',
-      },
+        'User-Agent': 'Chrome'
+      }
     };
 
     request(options, (error, response, responseBody) => {
       if (error) return;
-      $ = cheerio.load(responseBody);
+      $ = cheerio.load(responseBody); // Not sure what $ is
       var links = $('.image a.link');
       var urls = new Array(links.length)
         .fill(0)
@@ -28,5 +28,5 @@ module.exports = {
 
       message.channel.send(urls[Math.floor(Math.random() * urls.length)]);
     });
-  },
+  }
 };

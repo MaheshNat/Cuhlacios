@@ -5,7 +5,7 @@ const config = {
   clearSchedule: '0 0 2 * * *',
   guildID: '689327932799451186',
   shawnID: '495824437506080769',
-  shawger: '689310843619508297',
+  shawger: '689310843619508297'
 };
 
 module.exports = config;

@@ -5,7 +5,7 @@ const muteID = '695306368583860232';
 module.exports = {
   name: 'mute',
   description: 'Temporarily mutes a user',
-  execute(message, args) {
+  execute (message, args) {
     if (
       !(
         message.member.roles.cache.some(role => role.name === 'mod') ||
@@ -15,7 +15,7 @@ module.exports = {
       message.reply('Sorry, only owners and mods can use this command.');
       return;
     }
-    let person = message.guild.member(message.mentions.members.first());
+    const person = message.guild.member(message.mentions.members.first());
     if (!person) return message.reply("Couldn't find that member");
 
     if (!args[2]) {

@@ -69,7 +69,7 @@ const websites = [
 module.exports = {
   name: 'website',
   description: 'sends a random useless website.',
-  execute(message, args) {
+  execute (message, args) {
     message.channel.send(
       websites[Math.floor(Math.random() * websites.length) + 1]
     );

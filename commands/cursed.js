@@ -1,7 +1,7 @@
 module.exports = {
   name: 'cursed',
   description: 'Sends a random cursed image.',
-  execute(message, args) {
+  execute (message, args) {
     message.channel.send({
       files: [
         './images/cursed/cursed_' +

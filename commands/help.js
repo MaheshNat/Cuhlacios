@@ -3,7 +3,7 @@ const fs = require('fs');
 module.exports = {
   name: 'help',
   description: 'Sends a description of every command.',
-  execute(message, args) {
+  execute (message, args) {
     let helpMessage = 'Commands:\n';
     const commandFiles = fs
       .readdirSync('commands/')
@@ -17,5 +17,5 @@ module.exports = {
       }
     }
     message.channel.send(helpMessage);
-  },
+  }
 };
