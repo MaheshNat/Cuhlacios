@@ -4,6 +4,6 @@ const config = {
   cooldownTimer: 7500,
   clearSchedule: '0 0 2 * * *',
   guildID: '689327932799451186'
-}
+};
 
-module.exports = config
+module.exports = config;

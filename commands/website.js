@@ -64,7 +64,7 @@ const websites = [
   'http://www.amialright.com/',
   'http://nooooooooooooooo.com/',
   'https://greatbignothing.com/'
-]
+];
 
 module.exports = {
   name: 'website',
@@ -72,6 +72,6 @@ module.exports = {
   execute (message, args) {
     message.channel.send(
       websites[Math.floor(Math.random() * websites.length) + 1]
-    )
+    );
   }
-}
+};

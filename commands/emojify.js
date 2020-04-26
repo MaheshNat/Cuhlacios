@@ -6,10 +6,10 @@ module.exports = {
       .slice(1, args.length)
       .join(' ')
       .toLowerCase()
-      .replace(/\W|[0-9]|_/g, '')
-    let reply = ''
-    for (const i in text) { reply += ' :regional_indicator_' + text.charAt(i) + ': ' }
+      .replace(/\W|[0-9]|_/g, '');
+    let reply = '';
+    for (const i in text) { reply += ' :regional_indicator_' + text.charAt(i) + ': '; }
 
-    message.channel.send(reply)
+    message.channel.send(reply);
   }
-}
+};

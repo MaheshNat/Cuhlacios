@@ -8,6 +8,6 @@ module.exports = {
           (Math.floor(Math.random() * 19) + 1) +
           '.jpg'
       ]
-    })
+    });
   }
-}
+};

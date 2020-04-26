@@ -6,6 +6,6 @@ module.exports = {
       files: [
         './images/dub/dub_' + (Math.floor(Math.random() * 21) + 1) + '.jpg'
       ]
-    })
+    });
   }
-}
+};

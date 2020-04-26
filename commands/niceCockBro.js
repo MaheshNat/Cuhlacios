@@ -4,6 +4,6 @@ module.exports = {
   execute (message, args) {
     message.channel.send({
       files: ['./images/nice_cock_bro.jpg']
-    })
+    });
   }
-}
+};

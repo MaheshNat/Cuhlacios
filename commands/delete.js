@@ -6,14 +6,14 @@ module.exports = {
       case 'id':
         message.channel.messages.fetch(args[1].split('=')[1]).then(message => {
           if (message.author.bot) {
-            message.delete()
+            message.delete();
           } else {
             message.reply(
               "Only messages sent by cuhlacios can be deleted using the 'delete' command"
-            )
+            );
           }
-        })
-        break
+        });
+        break;
     }
   }
-}
+};

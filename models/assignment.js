@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const assignmentSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -8,6 +8,6 @@ const assignmentSchema = mongoose.Schema({
   completion: Boolean,
   gradeType: String,
   answers: Array
-})
+});
 
-module.exports = mongoose.model('Assignment', assignmentSchema)
+module.exports = mongoose.model('Assignment', assignmentSchema);
