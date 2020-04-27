@@ -24,7 +24,9 @@ cron
             channel.name === 'announcements' ||
             channel.name === 'computer-science' ||
             channel.name === 'memes'
-          ) { return; }
+          ) {
+            return;
+          }
           client.commands.get('clear').clear(channel);
           console.log(`Cleared channel '${channel.name}'`);
         }

@@ -2,7 +2,7 @@ module.exports = {
   name: 'elongate',
   description:
     "adds a space between each letter of a message, the number of spaces between letters can be changed using the 'spaces=' flag",
-  execute (message, args) {
+  execute(message, args) {
     let spaces = 1;
     let text = args.slice(1, args.length).join(' ');
     if (args[1].startsWith('spaces=')) {

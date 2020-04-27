@@ -1,7 +1,7 @@
 const cron = require('cron');
 const Discord = require('discord.js');
 
-exports.start = (client) => {
+exports.start = client => {
   cron
     .job(
       client.config.clearSchedule,

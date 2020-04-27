@@ -5,7 +5,7 @@ const muteID = '695306368583860232';
 module.exports = {
   name: 'mute',
   description: 'Temporarily mutes a user',
-  execute (message, args) {
+  execute(message, args) {
     if (
       !(
         message.member.roles.cache.some(role => role.name === 'mod') ||

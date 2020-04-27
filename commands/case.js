@@ -1,7 +1,7 @@
 module.exports = {
   name: 'case',
   description: 'converts text to random case',
-  execute (message, args) {
+  execute(message, args) {
     let transformed = '';
     for (let i = 0; i < message.content.substring(6).length; i++) {
       const char = message.content.substring(6).charAt(i);

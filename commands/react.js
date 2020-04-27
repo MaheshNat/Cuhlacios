@@ -31,7 +31,7 @@ module.exports = {
   name: 'react',
   description:
     "Reacts to a specific message with emojified text. Requires the 'id=' flag, which specifies a message to be reacted to.",
-  execute (message, args) {
+  execute(message, args) {
     const text = args
       .splice(2, args.length)
       .join(' ')

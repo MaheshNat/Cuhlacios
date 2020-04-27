@@ -1,7 +1,7 @@
 module.exports = {
   name: 'arjun',
   description: 'Sends a spicy picture of arjun being horny af',
-  execute (message, args) {
+  execute(message, args) {
     console.log(args);
     if (isNaN(args[1])) {
       return message.reply(
