@@ -4,9 +4,8 @@
   "description": "",
   "main": "cuhlacioBot.js",
   "scripts": {
-    "dev:server": "node .",
-    "dev:lint": "eslint . --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:server": "nodemon -q .",
+    "dev:lint": "eslint . --fix"
   },
   "author": "",
   "license": "ISC",
@@ -31,6 +30,7 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1"
+    "eslint-plugin-standard": "^4.0.1",
+    "nodemon": "^2.0.3"
   }
 }
