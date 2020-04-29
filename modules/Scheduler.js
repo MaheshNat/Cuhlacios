@@ -1,5 +1,6 @@
 const cron = require('cron');
 const Discord = require('discord.js');
+const config = require('../config.js');
 
 exports.start = client => {
   cron
@@ -7,6 +8,7 @@ exports.start = client => {
       client.config.clearSchedule,
       () => {
         let server = client.guilds.cache.get(client.config.guildID);
+        if (server.id === config.oasisID) return;
         let channels = server.channels.cache;
         channels.forEach((channel, key, map) => {
           if (channel instanceof Discord.TextChannel) {
