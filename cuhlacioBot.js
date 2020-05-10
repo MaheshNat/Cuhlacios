@@ -9,7 +9,7 @@ const fs = require('fs');
 
 const commandFiles = fs
   .readdirSync('./commands/')
-  .filter((file) => file.endsWith('.js'));
+  .filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   client.commands.set(command.name, command);
@@ -28,7 +28,7 @@ client.on('ready', () => {
   client.user.setActivity("nothing. I'm a bot. I can't play anything");
 });
 
-client.on('message', (message) => {
+client.on('message', message => {
   if (message.author.id === '495824437506080769') {
     message.react('689310843619508297');
   }
@@ -67,7 +67,6 @@ cron
           if (
             channel.name === 'join-log' ||
             channel.name === 'announcements' ||
-            channel.name === 'computer-science' ||
             channel.name === 'memes'
           )
             return;

@@ -7,8 +7,8 @@ module.exports = {
   async execute(message, args) {
     if (
       !(
-        message.member.roles.cache.some((role) => role.name === 'mod') ||
-        message.member.roles.cache.some((role) => role.name === 'owner')
+        message.member.roles.cache.some(role => role.name === 'mod') ||
+        message.member.roles.cache.some(role => role.name === 'owner')
       )
     ) {
       message.reply('Sorry, only owners and mods can use this command.');
@@ -27,7 +27,7 @@ module.exports = {
           );
         message.channel.messages;
         fetched = await message.channel.messages.fetch({
-          limit: numMessages,
+          limit: numMessages
         });
         message.channel.bulkDelete(fetched);
         message.reply(`Successfully deleted ${numMessages} messages`);
@@ -45,5 +45,5 @@ module.exports = {
       fetched = await channel.messages.fetch({ limit: 100 });
       channel.bulkDelete(fetched);
     } while (fetched.size >= 2);
-  },
+  }
 };
