@@ -5,8 +5,6 @@ module.exports = {
   name: 'ud',
   description: 'Searches urban dictionary, or returns random result.',
   execute(message, args) {
-    if (!message.channel.nsfw)
-      return message.reply('Please run this command in a NSFW channel.');
     if (args.length <= 1 || !['random', 'search'].includes(args[1]))
       return message.reply(
         `Please enter a command in the format '${process.env.prefix}ud <search|random> query'`
