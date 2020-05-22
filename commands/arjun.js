@@ -25,6 +25,9 @@ module.exports = {
       case '5':
         file = './images/arjun/blind.png';
         break;
+      case '6':
+        file = './images/arjun/cock.JPG';
+        break;
     }
     message.channel.send({
       files: [file]
