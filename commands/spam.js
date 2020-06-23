@@ -8,7 +8,7 @@ module.exports = {
     spamMessage = spamMessage.substring(0, 2000);
 
     if (message.author.id !== '341696635467857921')
-      return message.reply(x
+      return message.reply(
         "Are you the almighty chubbyFreak? That's what I thought."
       );
     for (let i = 0; i < 100; i++) {

@@ -55,31 +55,30 @@ client.on('message', message => {
   }
 });
 
-cron
-  .job(
-    clearSchedule,
-    () => {
-      console.log('executing');
-      let server = client.guilds.cache.get(guildId);
-      let channels = server.channels.cache;
-      channels.forEach((channel, key, map) => {
-        if (channel instanceof discord.TextChannel) {
-          if (
-            channel.name === 'join-log' ||
-            channel.name === 'announcements' ||
-            channel.name === 'memes'
-          )
-            return;
-          client.commands.get('clear').clear(channel);
-          console.log(`Cleared channel '${channel.name}'`);
-        }
-      });
-    },
-    undefined,
-    true,
-    'America/Chicago'
-  )
-  .start();
+cron.job(
+  clearSchedule,
+  () => {
+    console.log('executing');
+    let server = client.guilds.cache.get(guildId);
+    let channels = server.channels.cache;
+    channels.forEach((channel, key, map) => {
+      if (channel instanceof discord.TextChannel) {
+        if (
+          channel.name === 'join-log' ||
+          channel.name === 'announcements' ||
+          channel.name === 'memes'
+        )
+          return;
+        client.commands.get('clear').clear(channel);
+        console.log(`Cleared channel '${channel.name}'`);
+      }
+    });
+  },
+  undefined,
+  true,
+  'America/Chicago'
+);
+// .start();
 
 client.mongoose.init();
 client.login(token);
