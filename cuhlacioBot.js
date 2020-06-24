@@ -66,6 +66,7 @@ cron.job(
     channels.forEach((channel, key, map) => {
       if (channel instanceof discord.TextChannel) {
         if (
+          channel.name === 'general' ||
           channel.name === 'join-log' ||
           channel.name === 'announcements' ||
           channel.name === 'memes'
