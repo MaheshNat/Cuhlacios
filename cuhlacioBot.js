@@ -33,6 +33,8 @@ client.on('message', message => {
     message.react('689310843619508297');
   }
 
+  if (!process.env.guilds.includes(message.guild.id)) return;
+
   if (message.author.bot || message.content.charAt(0) != '!') return;
   let args = message.content.substring(prefix.length).split(' ');
 
