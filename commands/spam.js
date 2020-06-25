@@ -12,7 +12,7 @@ module.exports = {
         "Are you the almighty chubbyFreak? That's what I thought."
       );
     for (let i = 0; i < 100; i++) {
-      message.channel.send(spamMessage).then(message => {
+      await message.channel.send(spamMessage).then(message => {
         let args = message.content
           .substring(process.env.prefix.length)
           .split(' ');
