@@ -35,7 +35,7 @@ client.on('message', message => {
 
   if (!process.env.guilds.includes(message.guild.id)) return;
 
-  if (message.author.bot || message.content.charAt(0) != '!') return;
+  if (message.content.charAt(0) != '!') return;
   let args = message.content.substring(prefix.length).split(' ');
 
   if (client.commands.get(args[0])) {
