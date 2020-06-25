@@ -48,7 +48,7 @@ client.on('message', message => {
         } seconds`
       );
     } else {
-      client.commands.get(args[0]).execute(message, args);
+      client.commands.get(args[0]).execute(message, args, client);
       usedCommandRecently[message.author.id] = new Date().getTime();
       setTimeout(() => {
         delete usedCommandRecently[message.author.id];
