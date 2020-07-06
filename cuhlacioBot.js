@@ -1,5 +1,6 @@
 const discord = require('discord.js');
 const cron = require('cron');
+require('dotenv').config();
 
 const client = new discord.Client();
 client.commands = new discord.Collection();
@@ -33,7 +34,7 @@ client.on('message', message => {
     message.react('689310843619508297');
   }
 
-  if (!process.env.guilds.includes(message.guild.id)) return;
+  if (!guilds.includes(message.guild.id)) return;
 
   if (message.content.charAt(0) != '!') return;
   let args = message.content.substring(prefix.length).split(' ');
