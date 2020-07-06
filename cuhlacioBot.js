@@ -34,7 +34,7 @@ client.on('message', message => {
     message.react('689310843619508297');
   }
 
-  if (!guilds.includes(message.guild.id)) return;
+  if (!process.env.guilds.includes(message.guild.id)) return;
 
   if (message.content.charAt(0) != '!') return;
   let args = message.content.substring(prefix.length).split(' ');
