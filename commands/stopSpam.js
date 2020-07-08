@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'spam',
+  name: 'stopSpam',
   description: 'stops spamming.',
   async execute(message, args, client) {
     client.spamming = false;
