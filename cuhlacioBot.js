@@ -5,6 +5,7 @@ require('dotenv').config();
 const client = new discord.Client();
 client.commands = new discord.Collection();
 client.mongoose = require('./utils/mongoose');
+client.spamming = true;
 
 const fs = require('fs');
 

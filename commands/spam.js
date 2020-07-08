@@ -2,6 +2,7 @@ module.exports = {
   name: 'spam',
   description: 'spams a message repeatedly.',
   async execute(message, args, client) {
+    client.spamming = true;
     let spam = args.splice(1, args.length).join(' ') + ' ';
     let spamMessage = '';
     while (spamMessage.length <= 2000) spamMessage += spam;
@@ -18,6 +19,7 @@ module.exports = {
       );
     for (let i = 0; i < 100; i++) {
       await message.channel.send(spamMessage).then(message => {
+        if (!client.spamming) return;
         let args = message.content
           .substring(process.env.prefix.length)
           .split(' ');
