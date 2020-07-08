@@ -3,23 +3,21 @@ module.exports = {
   description: 'spams a message repeatedly.',
   async execute(message, args, client) {
     client.spamming = true;
-    let spam = args.splice(1, args.length).join(' ') + ' ';
+    let spam = args.splice(2, args.length).join(' ') + ' ';
+    let length = parseInt(args[1]);
     let spamMessage = '';
     while (spamMessage.length <= 2000) spamMessage += spam;
     spamMessage = spamMessage.substring(0, 2000);
 
-    if (
-      !(
-        message.author.id === '341696635467857921' ||
-        message.author.id === '679533038539112455'
-      )
-    )
-      return message.reply(
-        "Are you the almighty chubbyFreak or mediumuzivert? That's what I thought."
-      );
-    for (let i = 0; i < 100; i++) {
+    const ids = [
+      '730519603519946862',
+      '679533038539112455',
+      '341696635467857921'
+    ];
+    if (!ids.includes(message.author.id)) return message.reply('git good.');
+    for (let i = 0; i < length; i++) {
+      if (!client.spamming) return;
       await message.channel.send(spamMessage).then(message => {
-        if (!client.spamming) return;
         let args = message.content
           .substring(process.env.prefix.length)
           .split(' ');
