@@ -5,8 +5,7 @@ module.exports = {
     let transformed = '';
     for (let i = 0; i < message.content.substring(6).length; i++) {
       let char = message.content.substring(6).charAt(i);
-      transformed +=
-        Math.random() > 0.5 ? char.toUpperCase() : char.toLowerCase();
+      transformed += i % 2 === 0 ? char.toUpperCase() : char.toLowerCase();
     }
     message.channel.send(transformed);
   }
