@@ -10,16 +10,16 @@ module.exports = {
       );
 
     let length = parseInt(args[1]);
+    if (length >= 100)
+      return message.reply(
+        "Any more than this and you're prolly gonna get kicked"
+      );
     let spamMessage = '';
     while (spamMessage.length <= 2000) spamMessage += spam;
     spamMessage = spamMessage.substring(0, 2000);
 
-    const ids = [
-      '730519603519946862',
-      '679533038539112455',
-      '341696635467857921'
-    ];
-    if (!ids.includes(message.author.id)) return message.reply('git good.');
+    if (!process.env.spammingIds.includes(message.author.id))
+      return message.reply('git good.');
     for (let i = 0; i < length; i++) {
       if (!client.spamming) return;
       await message.channel.send(spamMessage).then(message => {
