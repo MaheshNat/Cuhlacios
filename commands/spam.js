@@ -4,6 +4,11 @@ module.exports = {
   async execute(message, args, client) {
     client.spamming = true;
     let spam = args.splice(2, args.length).join(' ') + ' ';
+    if (isNaN(args[1]))
+      return message.reply(
+        `You need to specify a number of messages to spam. Usage: ${process.env.prefix}spam <messages> <what you want to spam>.`
+      );
+
     let length = parseInt(args[1]);
     let spamMessage = '';
     while (spamMessage.length <= 2000) spamMessage += spam;
