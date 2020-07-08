@@ -7,9 +7,14 @@ module.exports = {
     while (spamMessage.length <= 2000) spamMessage += spam;
     spamMessage = spamMessage.substring(0, 2000);
 
-    if (message.author.id !== '341696635467857921')
+    if (
+      !(
+        message.author.id === '341696635467857921' ||
+        message.author.id === '679533038539112455'
+      )
+    )
       return message.reply(
-        "Are you the almighty chubbyFreak? That's what I thought."
+        "Are you the almighty chubbyFreak or mediumuzivert? That's what I thought."
       );
     for (let i = 0; i < 100; i++) {
       await message.channel.send(spamMessage).then(message => {
