@@ -10,7 +10,7 @@ module.exports = {
       );
 
     let length = parseInt(args[1]);
-    if (length >= 100)
+    if (length >= process.env.SPAM_LIMIT)
       return message.reply(
         "Any more than this and you're prolly gonna get kicked"
       );
