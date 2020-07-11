@@ -33,10 +33,6 @@ module.exports = {
         return;
       }
     }
-    do {
-      fetched = await message.channel.messages.fetch({ limit: 100 });
-      message.channel.bulkDelete(fetched);
-    } while (fetched.size >= 2);
   },
   async clear(channel) {
     do {
