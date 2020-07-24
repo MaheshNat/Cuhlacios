@@ -12,5 +12,6 @@ module.exports = {
       reply += ' :regional_indicator_' + text.charAt(i) + ': ';
 
     message.channel.send(reply);
+    message.delete();
   }
 };

@@ -19,5 +19,6 @@ module.exports = {
         'You cannot send messages greater than 2000 characters in length.'
       );
     else message.channel.send(reply);
+    message.delete();
   }
 };

@@ -8,5 +8,6 @@ module.exports = {
       transformed += i % 2 === 0 ? char.toUpperCase() : char.toLowerCase();
     }
     message.channel.send(transformed);
+    message.delete();
   }
 };
