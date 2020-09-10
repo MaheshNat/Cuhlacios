@@ -10,9 +10,12 @@ module.exports = {
       );
 
     let length = parseInt(args[1]);
-    if (length >= process.env.SPAM_LIMIT)
+    if (
+      length >= process.env.SPAM_LIMIT &&
+      message.author.id !== '341696635467857921'
+    )
       return message.reply(
-        "Any more than this and you're prolly gonna get kicked"
+        `The spam limit is currently set to ${process.env.SPAM_LIMIT} messages.`
       );
     let spamMessage = '';
     while (spamMessage.length <= 2000) spamMessage += spam;
