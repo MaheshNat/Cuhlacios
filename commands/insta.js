@@ -28,6 +28,12 @@ module.exports = {
         return message.reply(
           `Successfully sent ${args[2]} messages to ${args[1]}`
         );
+      })
+      .catch(err => {
+        console.log(err);
+        return message.reply(
+          `Something went wrong sending ${args[2]} messages to ${args[1]}`
+        );
       });
   }
 };
