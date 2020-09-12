@@ -18,7 +18,9 @@ module.exports = {
     )
       return message.reply(`git good.`);
 
-    message.reply(`Sending ${args[2]} messages to ${args[1]}`);
+    message.reply(
+      `Sending ${args[2]} messages to ${args[1]}, don't worry if you don't get a response from me the spam will still go through, heroku is gay and has a request timeout limit.`
+    );
     axios({
       method: 'post',
       url: process.env.tyroneApi,
@@ -38,9 +40,6 @@ module.exports = {
       })
       .catch(err => {
         console.log(err);
-        return message.reply(
-          `Something went wrong sending ${args[2]} messages to ${args[1]}`
-        );
       });
   }
 };
