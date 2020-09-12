@@ -19,11 +19,18 @@ module.exports = {
       return message.reply(`git good.`);
 
     message.reply(`Sending ${args[2]} messages to ${args[1]}`);
-    axios
-      .post(process.env.tyroneApi, {
+    axios({
+      method: 'post',
+      url: process.env.tyroneApi,
+      timeout: 1000 * 600,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: {
         username: args[1],
         messages: parseInt(args[2])
-      })
+      }
+    })
       .then(res => {
         return message.reply(
           `Successfully sent ${args[2]} messages to ${args[1]}`
