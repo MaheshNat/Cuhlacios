@@ -10,7 +10,7 @@ module.exports = {
         `Please enter a command in the format '${process.env.prefix}ud <search|random> query'`
       );
     let search =
-      args[1] !== 'random' ? urban(args.slice(1).join(' ')) : urban.random();
+      args[1] !== 'random' ? urban(args.slice(2).join(' ')) : urban.random();
     try {
       search.first(res => {
         if (!res) return message.reply('No results found.');
