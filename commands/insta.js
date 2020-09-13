@@ -13,7 +13,8 @@ module.exports = {
       ![
         '679533038539112455',
         '341696635467857921',
-        '409513998338359296'
+        '409513998338359296',
+        '484442275175464960'
       ].includes(message.author.id)
     )
       return message.reply(`git good.`);
