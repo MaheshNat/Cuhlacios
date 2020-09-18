@@ -2,7 +2,7 @@ const axios = require('axios');
 
 module.exports = {
   name: 'insta',
-  description: `roasts the shit out of someone on instagram using a bot acc. Usage: ${process.env.prefix}insta <username> <number of messages>`,
+  description: `roasts the shit out of someone on instagram using a bot acc. Usage: ${process.env.prefix}insta <username> <number of messages> <'roast' for a roast message>`,
   async execute(message, args, client) {
     if (!args[1] || !args[2] || isNaN(args[2]))
       return message.reply(
@@ -31,7 +31,9 @@ module.exports = {
       },
       data: {
         username: args[1],
-        messages: parseInt(args[2])
+        messages: parseInt(args[2]),
+        roast: args[3] === 'roast' ? 'True' : 'False',
+        ...({ message: args.slice(3).join(' ') } && args[3] === 'roast')
       }
     })
       .then(res => {
