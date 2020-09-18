@@ -33,7 +33,7 @@ module.exports = {
         username: args[1],
         messages: parseInt(args[2]),
         roast: args[3] === 'roast' ? 'True' : 'False',
-        ...({ message: args.slice(3).join(' ') } && args[3] !== 'roast')
+        message: args.slice(3).join(' ')
       }
     })
       .then(res => {
