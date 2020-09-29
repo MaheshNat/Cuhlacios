@@ -39,15 +39,13 @@ client.on('message', message => {
 
   if (message.content.charAt(0) != '!') return;
   let args = message.content.substring(prefix.length).split(' ');
-  if (args[0] !== 'emojipastafy') return;
 
   if (client.commands.get(args[0])) {
     if (usedCommandRecently[message.author.id]) {
       message.reply(
-        `You cannot use that command just yet! Wait another ${
-          (cooldownTime -
-            (new Date().getTime() - usedCommandRecently[message.author.id])) /
-          1000
+        `You cannot use that command just yet! Wait another ${(cooldownTime -
+          (new Date().getTime() - usedCommandRecently[message.author.id])) /
+        1000
         } seconds`
       );
     } else {
