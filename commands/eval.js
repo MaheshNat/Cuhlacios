@@ -3,6 +3,8 @@ module.exports = {
   description: 'Evaluates code following command in javascript',
   execute(message, args) {
     let code = args.slice(1, args.length).join(' ');
+    if (code.includes('process.env'))
+      return message.reply('You cannot access process.env.');
     try {
       message.channel.send(eval(code), { code: 'javascript' });
     } catch (err) {
