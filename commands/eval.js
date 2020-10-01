@@ -6,7 +6,7 @@ module.exports = {
     try {
       message.channel.send(eval(code), { code: 'javascript' });
     } catch (err) {
-      this.channel.send(`ERROR!\n${err}`, { code: 'javascript' });
+      message.channel.send(`ERROR!\n${err}`, { code: 'javascript' });
     }
   }
 };
