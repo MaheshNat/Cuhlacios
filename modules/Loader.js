@@ -1,5 +1,6 @@
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
+const axios = require('axios');
 
 exports.registerModules = async client => {
   const moduleFiles = await readdir('./modules/');
@@ -17,8 +18,9 @@ exports.registerModules = async client => {
 
 exports.registerCommands = async client => {
   const cmdFiles = await readdir('./commands/');
-  if (cmdFiles.length > 0)
+  if (cmdFiles.length > 0) {
     client.logger.log(`Loading ${cmdFiles.length} commands`);
+  }
   const registeredCommands = [];
   cmdFiles.forEach(file => {
     const commandName = file.split('.')[0];
@@ -44,7 +46,7 @@ exports.registerEvents = async client => {
 };
 
 exports.checkDiscordStatus = client => {
-  require('axios')
+  axios
     .get(client.config.statusURL)
     .then(({ data }) =>
       client.logger.log(`Discord API Status: ${data.status.description}`)

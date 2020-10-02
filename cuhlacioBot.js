@@ -2,10 +2,6 @@ const Discord = require('discord.js');
 const cron = require('cron');
 require('dotenv').config();
 
-const usedCommandRecently = {};
-
-require('dotenv').config();
-
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 client.mongoose = require('./utils/mongoose');
@@ -53,7 +49,7 @@ const init = async () => {
   } catch (err) {
     await client.logger.warn('URI needs to be defined for mongoose.');
   }
-  await client.login(process.env.TOKEN);
+  await client.login(process.env.token);
 };
 
 init();

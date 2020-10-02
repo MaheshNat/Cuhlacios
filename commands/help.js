@@ -11,7 +11,7 @@ module.exports = {
     for (const file of commandFiles) {
       const command = require(`./${file}`);
       helpMessage += `'!${command.name}': ${command.description}\n`;
-      if (command.name === 'help' || command.name === 'random') {
+      if (command.name === 'help' || command.name === 'plutus') {
         message.channel.send(helpMessage);
         helpMessage = `'${process.env.prefix}${command.name}': ${command.description}\n`;
       }
