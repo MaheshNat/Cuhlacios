@@ -10,11 +10,11 @@ module.exports = {
       text = args.slice(2, args.length).join(' ');
     }
     let reply = '';
-    for (let i in text) {
+    for (const i in text) {
       reply += text.charAt(i);
       for (let j = 0; j < spaces; j++) reply += ' ';
     }
-    if (reply.length >= 2000)
+    if (reply.length >= 2000) {
       message.reply(
         'You cannot send messages greater than 2000 characters in length.'
       );

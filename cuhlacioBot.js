@@ -1,88 +1,59 @@
-const discord = require('discord.js');
+const Discord = require('discord.js');
 const cron = require('cron');
 require('dotenv').config();
 
-const client = new discord.Client();
-client.commands = new discord.Collection();
-client.mongoose = require('./utils/mongoose');
-client.spamming = true;
-
-const fs = require('fs');
-
-const commandFiles = fs
-  .readdirSync('./commands/')
-  .filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  client.commands.set(command.name, command);
-}
-
 const usedCommandRecently = {};
 
-const token = process.env.token;
-const prefix = process.env.prefix;
-const cooldownTime = process.env.cooldownTime;
-const guildId = '695306368348848218';
-const clearSchedule = process.env.clearSchedule;
+require('dotenv').config();
 
-client.on('ready', () => {
-  console.log('ready');
-  client.user.setActivity("nothing. I'm a bot. I can't play anything");
-});
+const client = new Discord.Client();
+client.commands = new Discord.Collection();
+client.mongoose = require('./utils/mongoose');
+client.config = require('./config.js');
+client.loader = require('./modules/Loader');
 
-client.on('message', message => {
-  if (message.author.id === '495824437506080769') {
-    message.react('689310843619508297');
+// Consider moving cron.job to a module file or functions.js file. The bot.js / index.js should be a small as possible.
+cron
+  .job(
+    client.config.clearSchedule,
+    () => {
+      console.log('executing');
+      const server = client.guilds.cache.get(client.config.guildID);
+      const channels = server.channels.cache;
+      channels.forEach((channel, key, map) => {
+        if (channel instanceof Discord.TextChannel) {
+          if (
+            channel.name === 'join-log' ||
+            channel.name === 'announcements' ||
+            channel.name === 'computer-science' ||
+            channel.name === 'memes'
+          ) {
+            return;
+          }
+          client.commands.get('clear').clear(channel);
+          console.log(`Cleared channel '${channel.name}'`);
+        }
+      });
+    },
+    undefined,
+    true,
+    'America/Chicago'
+  )
+  .start();
+
+const init = async () => {
+  console.clear();
+  const loader = client.loader;
+  await loader.registerModules(client);
+  await loader.registerCommands(client);
+  await loader.registerEvents(client);
+  await loader.checkDiscordStatus(client);
+  try {
+    await client.mongoose.init();
+  } catch (err) {
+    await client.logger.warn('URI needs to be defined for mongoose.');
   }
+  await client.login(process.env.TOKEN);
+};
 
-  if (!process.env.guilds.includes(message.guild.id)) return;
-
-  if (message.content.charAt(0) != '!') return;
-  let args = message.content.substring(prefix.length).split(' ');
-
-  if (client.commands.get(args[0])) {
-    if (usedCommandRecently[message.author.id]) {
-      message.reply(
-        `You cannot use that command just yet! Wait another ${(cooldownTime -
-          (new Date().getTime() - usedCommandRecently[message.author.id])) /
-        1000
-        } seconds`
-      );
-    } else {
-      client.commands.get(args[0]).execute(message, args, client);
-      usedCommandRecently[message.author.id] = new Date().getTime();
-      setTimeout(() => {
-        delete usedCommandRecently[message.author.id];
-      }, cooldownTime);
-    }
-  }
-});
-
-cron.job(
-  clearSchedule,
-  () => {
-    console.log('executing');
-    let server = client.guilds.cache.get(guildId);
-    let channels = server.channels.cache;
-    channels.forEach((channel, key, map) => {
-      if (channel instanceof discord.TextChannel) {
-        if (
-          channel.name === 'general' ||
-          channel.name === 'join-log' ||
-          channel.name === 'announcements' ||
-          channel.name === 'memes'
-        )
-          return;
-        client.commands.get('clear').clear(channel);
-        console.log(`Cleared channel '${channel.name}'`);
-      }
-    });
-  },
-  undefined,
-  true,
-  'America/Chicago'
-);
-// .start();
-
-client.mongoose.init();
-client.login(token);
+init();

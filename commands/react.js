@@ -32,7 +32,7 @@ module.exports = {
   description:
     "Reacts to a specific message with emojified text. Requires the 'id=' flag, which specifies a message to be reacted to.",
   execute(message, args) {
-    let text = args
+    const text = args
       .splice(2, args.length)
       .join(' ')
       .toLowerCase()
@@ -46,7 +46,7 @@ module.exports = {
     switch (args[1].split('=')[0]) {
       case 'id':
         message.channel.messages.fetch(args[1].split('=')[1]).then(message => {
-          for (let i in text) message.react(emojiMap[text.charAt(i)]);
+          for (const i in text) message.react(emojiMap[text.charAt(i)]);
         });
         break;
     }

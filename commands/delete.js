@@ -7,10 +7,11 @@ module.exports = {
         message.channel.messages.fetch(args[1].split('=')[1]).then(message => {
           if (message.author.bot) {
             message.delete();
-          } else
+          } else {
             message.reply(
               "Only messages sent by cuhlacios can be deleted using the 'delete' command"
             );
+          }
         });
         break;
     }

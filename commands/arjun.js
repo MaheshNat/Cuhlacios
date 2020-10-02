@@ -3,11 +3,12 @@ module.exports = {
   description: 'Sends a spicy picture of arjun being horny af',
   execute(message, args) {
     console.log(args);
-    if (isNaN(args[1]))
+    if (isNaN(args[1])) {
       return message.reply(
         `You need to enter a valid parameter for ${process.env.prefix}arjun <int>`
       );
-    let num = args[1];
+    }
+    // const num = args[1] // num is never used
     let file = '';
     switch (args[1]) {
       case '1':
