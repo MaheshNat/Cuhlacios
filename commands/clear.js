@@ -16,8 +16,6 @@ module.exports = {
     }
     if (message.channel instanceof discord.DMChannel) {
       return message.channel.delete();
-    }
-
     let fetched;
     for (const arg of args) {
       if (arg.split('=')[0] === 'messages') {
@@ -36,16 +34,11 @@ module.exports = {
         return;
       }
     }
-
-    do {
-      fetched = await message.channel.messages.fetch({ limit: 100 });
-      message.channel.bulkDelete(fetched);
-    } while (fetched.size >= 2);
-  },
-  async clear(channel) {
-    do {
-      fetched = await channel.messages.fetch({ limit: 100 }); // note that fetched is undefined here
-      channel.bulkDelete(fetched);
-    } while (fetched.size >= 2);
-  }
-};
+    fetched = await message.channel.messages.fetch({ limit: 100 });
+    message.channel.bulkDelete(fetched);
+}} , async clear(channel) {
+  do {
+    fetched = await channel.messages.fetch({ limit: 100 }); // note that fetched is undefined here
+    channel.bulkDelete(fetched);
+  } while (fetched.size >= 2);
+}}

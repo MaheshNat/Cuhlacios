@@ -4,10 +4,10 @@ module.exports = {
   execute(message, args) {
     let transformed = '';
     for (let i = 0; i < message.content.substring(6).length; i++) {
-      const char = message.content.substring(6).charAt(i);
-      transformed +=
-        Math.random() > 0.5 ? char.toUpperCase() : char.toLowerCase();
+      let char = message.content.substring(6).charAt(i);
+      transformed += i % 2 === 0 ? char.toUpperCase() : char.toLowerCase();
     }
     message.channel.send(transformed);
+    message.delete();
   }
 };

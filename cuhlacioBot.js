@@ -1,5 +1,8 @@
 const Discord = require('discord.js');
 const cron = require('cron');
+require('dotenv').config();
+
+const usedCommandRecently = {};
 
 require('dotenv').config();
 

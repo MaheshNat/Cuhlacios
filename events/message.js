@@ -1,11 +1,7 @@
 const usedCommandRecently = {};
 
 module.exports = async (client, message) => {
-  if (message.author.id === '495824437506080769') {
-    message.react('689310843619508297');
-  }
-
-  if (message.author.bot || message.content.charAt(0) !== '!') return;
+  if (message.author.bot || message.content.charAt(0) !== client.config.prefix) return;
   const args = message.content
     .substring(client.config.prefix.length)
     .split(' ');

@@ -12,10 +12,22 @@ module.exports = {
     let file = '';
     switch (args[1]) {
       case '1':
-        file = './images/arjun.png';
+        file = './images/arjun/arjun.png';
         break;
       case '2':
-        file = './images/dumbass.png';
+        file = './images/arjun/dumbass.png';
+        break;
+      case '3':
+        file = './images/arjun/dimension.png';
+        break;
+      case '4':
+        file = './images/arjun/recursive.png';
+        break;
+      case '5':
+        file = './images/arjun/blind.png';
+        break;
+      case '6':
+        file = './images/arjun/cock.JPG';
         break;
     }
     message.channel.send({
