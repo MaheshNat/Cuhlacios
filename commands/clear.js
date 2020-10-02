@@ -14,7 +14,7 @@ module.exports = {
       message.reply('Sorry, only owners and mods can use this command.');
       return;
     }
-    if (message.channel instanceof discord.DMChannel) {
+    if (message.channel instanceof discord.DMChannel)
       return message.channel.delete();
     let fetched;
     for (const arg of args) {
@@ -25,7 +25,6 @@ module.exports = {
             `Can only delete a maximum of 100 messages in a single call, type '${process.env.prefix}clear' to clear the entire channel`
           );
         }
-        // message.channel.messages // Not sure what's happening here.
         fetched = await message.channel.messages.fetch({
           limit: numMessages
         });
@@ -36,9 +35,15 @@ module.exports = {
     }
     fetched = await message.channel.messages.fetch({ limit: 100 });
     message.channel.bulkDelete(fetched);
-}} , async clear(channel) {
-  do {
-    fetched = await channel.messages.fetch({ limit: 100 }); // note that fetched is undefined here
-    channel.bulkDelete(fetched);
-  } while (fetched.size >= 2);
-}}
+  },
+  async clear(channel) {
+    do {
+      var fetched = await channel.messages.fetch({ limit: 100 });
+      try {
+        channel.bulkDelete(fetched);
+      } catch (e) {
+        return channel.send("Can't bulk delete messages over 30 days old.");
+      }
+    } while (fetched.size >= 2);
+  }
+};
