@@ -1,7 +1,8 @@
 const usedCommandRecently = {};
 
 module.exports = async (client, message) => {
-  if (message.author.bot || message.content.charAt(0) !== client.config.prefix) return;
+  if (message.author.bot || message.content.charAt(0) !== client.config.prefix)
+    return;
   const args = message.content
     .substring(client.config.prefix.length)
     .split(' ');
@@ -16,7 +17,7 @@ module.exports = async (client, message) => {
         } seconds`
       );
     } else {
-      client.commands.get(args[0]).execute(message, args);
+      client.commands.get(args[0]).execute(message, args, client);
       usedCommandRecently[message.author.id] = new Date().getTime();
       setTimeout(() => {
         delete usedCommandRecently[message.author.id];
