@@ -1,8 +1,7 @@
 module.exports = {
   name: 'spam',
   description: 'spams a message repeatedly.',
-  async execute(message, args, client) {
-    client.spamming = true;
+  async execute(message, args) {
     let spam = args.splice(2, args.length).join(' ') + ' ';
     if (isNaN(args[1]))
       return message.reply(
@@ -24,7 +23,6 @@ module.exports = {
     if (!process.env.spammingIds.includes(message.author.id))
       return message.reply('git good.');
     for (let i = 0; i < length; i++) {
-      if (!client.spamming) return;
       await message.channel.send(spamMessage).then(message => {
         let args = message.content
           .substring(process.env.prefix.length)

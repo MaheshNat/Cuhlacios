@@ -3,7 +3,7 @@ const axios = require('axios');
 module.exports = {
   name: 'insta',
   description: `roasts the shit out of someone on instagram using a bot acc. Usage: ${process.env.prefix}insta <username> <number of messages> <'roast' for a roast message>`,
-  async execute(message, args, client) {
+  async execute(message, args) {
     if (!args[1] || !args[2] || isNaN(args[2]))
       return message.reply(
         `You need to specify a number of messages to spam. Usage: ${process.env.prefix}insta <username> <number of messages>.`
