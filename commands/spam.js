@@ -1,7 +1,7 @@
 module.exports = {
   name: 'spam',
   description: 'spams a message repeatedly.',
-  async execute(message, args) {
+  async execute(message, args, client) {
     let spam = args.splice(2, args.length).join(' ') + ' ';
     if (isNaN(args[1]))
       return message.reply(
