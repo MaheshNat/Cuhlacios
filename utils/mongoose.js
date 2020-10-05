@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Logger = require('../modules/Logger');
 
 module.exports = {
   init: () => {
@@ -16,13 +17,13 @@ module.exports = {
     mongoose.Promise = global.Promise;
 
     mongoose.connection.on('connected', () => {
-      console.log('Mongoose connection successfully opened!');
+      Logger.log('Connected to mongoDB database.');
     });
     mongoose.connection.on('err', err => {
-      console.error(`Mongoose connection error: \n ${err.stack}`);
+      Logger.error(`mongoDB connection error: \n ${err.stack}`);
     });
     mongoose.connection.on('disconnected', () => {
-      console.log('Mongoose connection disconnected.');
+      Logger.error('Disconnected from mongoDB database');
     });
   }
 };
