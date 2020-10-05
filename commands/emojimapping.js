@@ -23,6 +23,8 @@ module.exports = {
         }
       );
     }
+    if (!emojiMappings[args.slice(1, args.length).join(' ')])
+      return message.reply('No emoji mapping found for that word(s).');
     const chunks = JSON.stringify(
       emojiMappings[args.slice(1, args.length).join(' ')]
     ).match(/(.|[\r\n]){1,1999}/g);
