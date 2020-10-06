@@ -1,17 +1,17 @@
 const usedCommandRecently = {};
 
 module.exports = async (client, message) => {
-  if (message.author.bot || message.content.charAt(0) !== client.config.prefix)
+  if (message.author.bot || message.content.charAt(0) !== process.env.PREFIX)
     return;
-  const args = message.content
-    .substring(client.config.prefix.length)
-    .split(' ');
+  const args = message.content.substring(process.env.PREFIX.length).split(' ');
+
+  if (!process.env.PERMITTED_GUILD_IDS.includes(message.guild.id)) return;
 
   if (client.commands.get(args[0])) {
     if (usedCommandRecently[message.author.id]) {
       message.reply(
         `You cannot use that command just yet! Wait another ${
-          (client.config.cooldownTimer -
+          (process.env.COOLDOWN_TIMER -
             (new Date().getTime() - usedCommandRecently[message.author.id])) /
           1000
         } seconds`
@@ -21,7 +21,7 @@ module.exports = async (client, message) => {
       usedCommandRecently[message.author.id] = new Date().getTime();
       setTimeout(() => {
         delete usedCommandRecently[message.author.id];
-      }, client.config.cooldownTimer);
+      }, process.env.COOLDOWN_TIMER);
     }
   }
 };

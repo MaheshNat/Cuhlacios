@@ -40,7 +40,7 @@ module.exports = {
           .catch(err => console.log(err));
 
         message.reply(
-          `Your assignment '${assignment.name}' has been successfully added. Type "${process.env.prefix}hw get" to view current assignments.`
+          `Your assignment '${assignment.name}' has been successfully added. Type "${process.env.PREFIX}hw get" to view current assignments.`
         );
         break;
       }

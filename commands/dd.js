@@ -4,9 +4,9 @@ const discord = require('discord.js');
 
 module.exports = {
   name: 'dd',
-  description: `add -> adds a dd to the list of current dds. Usage: ${process.env.prefix}dd add company=<ticker> price=<price(s)> strategy=<option strategy (c, p, sc, sp, cds, ccs, pds, pcs)> exp=<expiry date>
+  description: `add -> adds a dd to the list of current dds. Usage: ${process.env.PREFIX}dd add company=<ticker> price=<price(s)> strategy=<option strategy (c, p, sc, sp, cds, ccs, pds, pcs)> exp=<expiry date>
   get -> retrieves the list of current dds.
-  remove -> removes a particular dd from the list of current dds. Usage: ${process.env.prefix}dd remove <id>`,
+  remove -> removes a particular dd from the list of current dds. Usage: ${process.env.PREFIX}dd remove <id>`,
   execute(message, args) {
     switch (args[1]) {
       case 'add':
@@ -38,7 +38,7 @@ module.exports = {
           }${
             dd.type
           } ${dd.expirationDate.toLocaleDateString()}' has been successfully added. Type "${
-            process.env.prefix
+            process.env.PREFIX
           }dd get" to view current dds.`
         );
         break;

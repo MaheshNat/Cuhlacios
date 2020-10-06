@@ -7,7 +7,7 @@ module.exports = {
   execute(message, args) {
     if (args.length <= 1 || !['random', 'search'].includes(args[1]))
       return message.reply(
-        `Please enter a command in the format '${process.env.prefix}ud <search|random> query'`
+        `Please enter a command in the format '${process.env.PREFIX}ud <search|random> query'`
       );
     let search =
       args[1] !== 'random' ? urban(args.slice(2).join(' ')) : urban.random();

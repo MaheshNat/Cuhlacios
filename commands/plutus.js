@@ -5,7 +5,7 @@ module.exports = {
     console.log(args);
     if (isNaN(args[1]))
       return message.reply(
-        `You need to enter a valid parameter for ${process.env.prefix}plutus <int>`
+        `You need to enter a valid parameter for ${process.env.PREFIX}plutus <int>`
       );
     let num = args[1];
     let file = '';

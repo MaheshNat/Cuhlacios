@@ -5,7 +5,7 @@ module.exports = {
     let spam = args.splice(2, args.length).join(' ') + ' ';
     if (isNaN(args[1]))
       return message.reply(
-        `You need to specify a number of messages to spam. Usage: ${process.env.prefix}spam <messages> <what you want to spam>.`
+        `You need to specify a number of messages to spam. Usage: ${process.env.PREFIX}spam <messages> <what you want to spam>.`
       );
 
     let length = parseInt(args[1]);
@@ -20,12 +20,12 @@ module.exports = {
     while (spamMessage.length <= 2000) spamMessage += spam;
     spamMessage = spamMessage.substring(0, 2000);
 
-    if (!process.env.spammingIds.includes(message.author.id))
+    if (!process.env.PERMITTED_SPAM_USER_IDS.includes(message.author.id))
       return message.reply('git good.');
     for (let i = 0; i < length; i++) {
       await message.channel.send(spamMessage).then(message => {
         let args = message.content
-          .substring(process.env.prefix.length)
+          .substring(process.env.PREFIX.length)
           .split(' ');
         if (client.commands.get(args[0]))
           client.commands.get(args[0]).execute(message, args, client);

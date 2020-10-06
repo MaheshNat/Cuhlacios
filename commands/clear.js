@@ -22,7 +22,7 @@ module.exports = {
         const numMessages = parseInt(arg.split('=')[1]);
         if (numMessages > 100) {
           message.reply(
-            `Can only delete a maximum of 100 messages in a single call, type '${process.env.prefix}clear' to clear the entire channel`
+            `Can only delete a maximum of 100 messages in a single call, type '${process.env.PREFIX}clear' to clear the entire channel`
           );
         }
         fetched = await message.channel.messages.fetch({

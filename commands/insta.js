@@ -3,21 +3,14 @@ const emoji = require('node-emoji');
 
 module.exports = {
   name: 'insta',
-  description: `roasts the shit out of someone on instagram using a bot acc. Usage: ${process.env.prefix}insta <username> <number of messages> <'roast' for a roast message>`,
+  description: `roasts the shit out of someone on instagram using a bot acc. Usage: ${process.env.PREFIX}insta <username> <number of messages> <'roast' for a roast message>`,
   async execute(message, args) {
     if (!args[1] || !args[2] || isNaN(args[2]))
       return message.reply(
-        `You need to specify a number of messages to spam. Usage: ${process.env.prefix}insta <username> <number of messages>.`
+        `You need to specify a number of messages to spam. Usage: ${process.env.PREFIX}insta <username> <number of messages>.`
       );
 
-    if (
-      ![
-        '679533038539112455',
-        '341696635467857921',
-        '409513998338359296',
-        '484442275175464960'
-      ].includes(message.author.id)
-    )
+    if (!process.env.PERMITTED_TYRONE_USER_IDS.includes(message.author.id))
       return message.reply(`git good.`);
 
     message.reply(
@@ -25,7 +18,7 @@ module.exports = {
     );
     axios({
       method: 'post',
-      url: process.env.tyroneApi,
+      url: process.env.TYRONE_API_URL,
       timeout: 1000 * 600,
       headers: {
         'Content-Type': 'application/json'

@@ -13,7 +13,7 @@ module.exports = {
       helpMessage += `'!${command.name}': ${command.description}\n`;
       if (command.name === 'help' || command.name === 'plutus') {
         message.channel.send(helpMessage);
-        helpMessage = `'${process.env.prefix}${command.name}': ${command.description}\n`;
+        helpMessage = `'${process.env.PREFIX}${command.name}': ${command.description}\n`;
       }
     }
     message.channel.send(helpMessage);

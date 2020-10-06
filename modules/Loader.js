@@ -47,7 +47,7 @@ exports.registerEvents = async client => {
 
 exports.checkDiscordStatus = client => {
   axios
-    .get(client.config.statusURL)
+    .get(process.env.STATUS_URL)
     .then(({ data }) =>
       client.logger.log(`Discord API Status: ${data.status.description}`)
     );

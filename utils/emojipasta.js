@@ -10,7 +10,7 @@ module.exports = {
       var emojis = [];
       if (matchingEmojis) {
         var numEmojis = Math.floor(
-          Math.random() * (parseInt(process.env.maxEmojisPerBlock) + 1)
+          Math.random() * (parseInt(process.env.MAX_EMOJIS_PER_BLOCK) + 1)
         );
         for (var i = 0; i < numEmojis; i++) {
           emojis.push(

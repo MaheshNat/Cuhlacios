@@ -1,10 +1,10 @@
 module.exports = {
   name: 'arjun',
   description: 'Sends a spicy picture of arjun being horny af',
-  execute (message, args) {
+  execute(message, args) {
     if (isNaN(args[1])) {
       return message.reply(
-        `You need to enter a valid parameter for ${process.env.prefix}arjun <int>`
+        `You need to enter a valid parameter for ${process.env.PREFIX}arjun <int>`
       );
     }
     // const num = args[1] // num is never used
