@@ -8,7 +8,7 @@ exports.start = client => {
       process.env.CLEAR_SCHEDULE,
       () => {
         client.guilds.cache
-          .get(str(process.env.SEM_SERVER_GUILD_ID))
+          .get(process.env.SEM_SERVER_GUILD_ID)
           .channels.cache.forEach((channel, key, map) => {
             if (
               channel instanceof Discord.TextChannel &&
