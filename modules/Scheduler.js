@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const config = require('../config.js');
 
 exports.start = client => {
+  if (!process.env.CLEARING) return;
   cron
     .job(
       client.config.clearSchedule,
