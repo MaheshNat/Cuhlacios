@@ -1,4 +1,5 @@
 const axios = require('axios');
+const emoji = require('node-emoji');
 
 module.exports = {
   name: 'insta',
@@ -33,7 +34,7 @@ module.exports = {
         username: args[1],
         messages: parseInt(args[2]),
         roast: args[3] === 'roast' ? 'True' : 'False',
-        message: args.slice(3).join(' ')
+        message: emoji.emojify(args.slice(3).join(' '))
       }
     })
       .then(res => {
