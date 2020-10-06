@@ -1,5 +1,5 @@
 const cheerio = require('cheerio');
-const request = require('request');
+const axios = require('axios');
 
 module.exports = {
   name: 'art',
@@ -18,12 +18,8 @@ module.exports = {
       }
     };
 
-    request(options, (error, response, responseBody) => {
-      if (error) {
-        console.log(error);
-        return;
-      }
-      const $ = cheerio.load(responseBody);
+    axios.get('https://www.asciiart.eu/people/sexual/women').then(res => {
+      const $ = cheerio.load(res.data);
       const _women = $('pre');
       const women = new Array(_women.length)
         .fill(0)
@@ -33,7 +29,6 @@ module.exports = {
       const woman = women[Math.floor(Math.random() * women.length)];
       const chunks = woman.match(/(.|[\r\n]){1,1994}/g);
       for (const chunk of chunks) {
-        console.log(chunk.length);
         message.channel.send(
           '```' + chunk.replace('```', '`\u200b`\u200b`') + '```'
         );
