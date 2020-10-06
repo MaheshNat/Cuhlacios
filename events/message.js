@@ -5,7 +5,7 @@ module.exports = async (client, message) => {
     return;
   const args = message.content.substring(process.env.PREFIX.length).split(' ');
 
-  if (!process.env.PERMITTED_GUILD_IDS.includes(str(message.guild.id)))
+  if (!process.env.PERMITTED_GUILD_IDS.includes(message.guild.id))
     return message.reply(
       'Cuhlacios is not authorized to be used in this server.'
     );
