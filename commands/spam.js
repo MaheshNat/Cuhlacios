@@ -2,6 +2,8 @@ module.exports = {
   name: 'spam',
   description: 'spams a message repeatedly.',
   async execute(message, args, client) {
+    if (!process.env.PERMITTED_SPAM_GUILD_IDS.includes(message.guild.id))
+      return message.reply('Spamming is prohibited on this server.');
     let spam = args.splice(2, args.length).join(' ') + ' ';
     if (isNaN(args[1]))
       return message.reply(
@@ -11,7 +13,7 @@ module.exports = {
     let length = parseInt(args[1]);
     if (
       length >= process.env.SPAM_LIMIT &&
-      message.author.id !== '341696635467857921'
+      message.author.id !== process.env.OWNER_USER_ID
     )
       return message.reply(
         `The spam limit is currently set to ${process.env.SPAM_LIMIT} messages.`
@@ -21,7 +23,7 @@ module.exports = {
     spamMessage = spamMessage.substring(0, 2000);
 
     if (!process.env.PERMITTED_SPAM_USER_IDS.includes(message.author.id))
-      return message.reply('git good.');
+      return message.reply('You are not permitted to use the spam command.');
     for (let i = 0; i < length; i++) {
       await message.channel.send(spamMessage).then(message => {
         let args = message.content
