@@ -8,13 +8,15 @@ module.exports = {
     const commandFiles = fs
       .readdirSync('commands/')
       .filter(file => file.endsWith('.js'));
+    let i = 0;
     for (const file of commandFiles) {
       const command = require(`./${file}`);
       helpMessage += `'!${command.name}': ${command.description}\n`;
-      if (command.name === 'hello' || command.name === 'isis' || command.name === 'shut') {
+      if (i % 7 === 0) {
         message.channel.send(helpMessage);
         helpMessage = `'${process.env.PREFIX}${command.name}': ${command.description}\n`;
       }
+      i++
     }
     message.channel.send(helpMessage);
   }
