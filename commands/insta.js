@@ -26,7 +26,12 @@ module.exports = {
       data: {
         username: args[1],
         messages: parseInt(args[2]),
-        roast: args[3] === 'roast' ? 'True' : 'False',
+        type:
+          args[3] === 'roast'
+            ? 'roast'
+            : args[3] === 'dirty'
+            ? 'dirty'
+            : 'message',
         message: emoji.emojify(args.slice(3).join(' '))
       }
     })
