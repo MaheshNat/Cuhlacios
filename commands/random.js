@@ -16,6 +16,11 @@ module.exports = {
         var urls = new Array(links.length)
           .fill(0)
           .map((v, i) => links.eq(i).attr('href'));
+
+        if (args[1] === 'gif')
+          urls.filter(
+            url => url.substring(url.length - 4, url.length) === '.gif'
+          );
         if (!urls.length) return message.reply('No results found.');
 
         message.channel.send(urls[Math.floor(Math.random() * urls.length)]);
