@@ -30,5 +30,6 @@ module.exports = {
     );
     const chunks = emojiPasta.match(/(.|[\r\n]){1,1999}/g);
     for (let chunk of chunks) message.channel.send(chunk);
+    message.delete();
   }
 };
