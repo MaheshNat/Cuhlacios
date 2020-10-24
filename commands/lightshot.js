@@ -28,7 +28,7 @@ module.exports = {
           'https://st.prntscr.com/2020/08/01/0537/img/0_173a7b_211be8ff.png'
       ) {
         message.channel.send(url);
-        message.channel.send(`lighthouse search took ${tries} tries.`);
+        message.channel.send(`lightshot search took ${tries} tries.`);
         tries = 0;
       }
     }
