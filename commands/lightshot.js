@@ -1,5 +1,6 @@
 const cheerio = require('cheerio');
 const axios = require('axios');
+const { search } = require('node-emoji');
 
 module.exports = {
   name: 'lightshot',
@@ -19,7 +20,7 @@ module.exports = {
       return result;
     };
 
-    setInterval(async () => {
+    const searchLightshotImage = async () => {
       console.log('starting searching for a lightshot image.');
       let tries = 0;
       let foundImage = false;
@@ -29,6 +30,7 @@ module.exports = {
         try {
           res = await axios.get(url);
         } catch (e) {
+          console.log('error searching for lightshot image: ' + url);
           return;
         }
         tries++;
@@ -42,6 +44,13 @@ module.exports = {
           foundImage = true;
         }
       }
-    }, parseInt(process.env.LIGHTSHOT_POLL_INTERVAL) * 1000);
+    };
+
+    searchLightshotImage();
+
+    setInterval(
+      searchLightshotImage,
+      parseInt(process.env.LIGHTSHOT_POLL_INTERVAL) * 1000
+    );
   }
 };
