@@ -22,7 +22,11 @@ module.exports = {
       const url = `https://prnt.sc/${makeId()}/direct`;
       const res = await axios.get(url);
       tries++;
-      if (res.request.res.responseUrl !== url) {
+      if (
+        res.request.res.responseUrl !== url &&
+        res.request.res.responseUrl !==
+          'https://st.prntscr.com/2020/08/01/0537/img/0_173a7b_211be8ff.png'
+      ) {
         message.channel.send(url);
         message.channel.send(`lighthouse search took ${tries} tries.`);
         tries = 0;
