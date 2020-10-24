@@ -20,7 +20,12 @@ module.exports = {
     let tries = 0;
     while (true) {
       const url = `https://prnt.sc/${makeId()}/direct`;
-      const res = await axios.get(url);
+      let res;
+      try {
+        res = await axios.get(url);
+      } catch (e) {
+        continue;
+      }
       tries++;
       if (
         res.request.res.responseUrl !== url &&
