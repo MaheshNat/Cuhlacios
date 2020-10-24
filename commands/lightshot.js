@@ -20,6 +20,7 @@ module.exports = {
     };
 
     setInterval(async () => {
+      console.log('starting searching for a lightshot image.');
       let tries = 0;
       let foundImage = false;
       while (!foundImage) {
@@ -28,8 +29,7 @@ module.exports = {
         try {
           res = await axios.get(url);
         } catch (e) {
-          console.log(`error with ${url}`);
-          continue;
+          return;
         }
         tries++;
         if (
