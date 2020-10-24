@@ -2,7 +2,7 @@ module.exports = {
   name: 'eval',
   description: 'Evaluates code following command in javascript',
   execute(message, args) {
-    if (message.author.id !== '341696635467857921')
+    if (message.author.id !== process.env.OWNER_ID)
       return message.reply('git good.');
     let code = args.slice(1, args.length).join(' ');
     if (code.includes('process.env'))

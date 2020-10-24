@@ -5,6 +5,8 @@ module.exports = {
   name: 'lightshot',
   description: 'Spams lightshot links',
   async execute(message, args) {
+    if (message.author.id !== process.env.OWNER_ID)
+      return message.reply('git good.');
     const characters =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const makeId = () => {
