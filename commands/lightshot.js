@@ -24,6 +24,7 @@ module.exports = {
       try {
         res = await axios.get(url);
       } catch (e) {
+        console.log(e);
         continue;
       }
       tries++;
