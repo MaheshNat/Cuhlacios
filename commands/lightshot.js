@@ -17,26 +17,29 @@ module.exports = {
       return result;
     };
 
-    let tries = 0;
-    while (true) {
-      const url = `https://prnt.sc/${makeId()}/direct`;
-      let res;
-      try {
-        res = await axios.get(url);
-      } catch (e) {
-        console.log(`error with ${url}`);
-        continue;
+    setInterval(async () => {
+      let tries = 0;
+      let foundImage = false;
+      while (!foundImage) {
+        const url = `https://prnt.sc/${makeId()}/direct`;
+        let res;
+        try {
+          res = await axios.get(url);
+        } catch (e) {
+          console.log(`error with ${url}`);
+          continue;
+        }
+        tries++;
+        if (
+          res.request.res.responseUrl !== url &&
+          res.request.res.responseUrl !==
+            'https://st.prntscr.com/2020/08/01/0537/img/0_173a7b_211be8ff.png'
+        ) {
+          message.channel.send(url);
+          message.channel.send(`lightshot search took ${tries} tries.`);
+          foundImage = true;
+        }
       }
-      tries++;
-      if (
-        res.request.res.responseUrl !== url &&
-        res.request.res.responseUrl !==
-          'https://st.prntscr.com/2020/08/01/0537/img/0_173a7b_211be8ff.png'
-      ) {
-        message.channel.send(url);
-        message.channel.send(`lightshot search took ${tries} tries.`);
-        tries = 0;
-      }
-    }
+    }, process.env.LIGHTSHOT_POLL_INTERVAL * 1000);
   }
 };
