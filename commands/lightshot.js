@@ -40,6 +40,6 @@ module.exports = {
           foundImage = true;
         }
       }
-    }, process.env.LIGHTSHOT_POLL_INTERVAL * 1000);
+    }, parseInt(process.env.LIGHTSHOT_POLL_INTERVAL) * 1000);
   }
 };
