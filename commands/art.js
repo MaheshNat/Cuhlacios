@@ -4,11 +4,8 @@ const axios = require('axios');
 module.exports = {
   name: 'art',
   description: 'Sends ASCII art.',
+  nsfw: true,
   execute(message, args) {
-    if (!message.channel.nsfw) {
-      return message.reply('This command can only be used in an nsfw channel.');
-    }
-
     var options = {
       url: 'https://www.asciiart.eu/people/sexual/women',
       method: 'GET',

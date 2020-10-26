@@ -10,7 +10,8 @@ module.exports = async (client, message) => {
       'Cuhlacios is not authorized to be used in this server.'
     );
 
-  if (client.commands.get(args[0])) {
+  const command = client.commands.get(args[0]);
+  if (command) {
     if (usedCommandRecently[message.author.id]) {
       message.reply(
         `You cannot use that command just yet! Wait another ${
@@ -20,7 +21,11 @@ module.exports = async (client, message) => {
         } seconds`
       );
     } else {
-      client.commands.get(args[0]).execute(message, args, client);
+      if (!message.channel.nsfw && command.nsfw)
+        return message.reply(
+          'This command can only be used in an nsfw channel.'
+        );
+      command.execute(message, args, client);
       usedCommandRecently[message.author.id] = new Date().getTime();
       setTimeout(() => {
         delete usedCommandRecently[message.author.id];
