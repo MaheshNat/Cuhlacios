@@ -25,6 +25,11 @@ module.exports = async (client, message) => {
         return message.reply(
           'This command can only be used in an nsfw channel.'
         );
+      if (
+        client['restrictedCommands'][args[0]] &&
+        !client['restrictedCommands'][args[0]].includes(message.guild.id)
+      )
+        return message.reply('This command cannot be used in this server.');
       command.execute(message, args, client);
       usedCommandRecently[message.author.id] = new Date().getTime();
       setTimeout(() => {

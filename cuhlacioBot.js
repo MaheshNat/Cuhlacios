@@ -13,6 +13,7 @@ const init = async () => {
   await loader.registerCommands(client);
   await loader.registerEvents(client);
   await loader.checkDiscordStatus(client);
+  await loader.registerRestrictedCommands(client);
   try {
     await client.mongoose.init();
   } catch (err) {

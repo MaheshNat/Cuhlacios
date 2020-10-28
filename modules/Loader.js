@@ -52,3 +52,7 @@ exports.checkDiscordStatus = client => {
       client.logger.log(`Discord API Status: ${data.status.description}`)
     );
 };
+
+exports.registerRestrictedCommands = client => {
+  client['restrictedCommands'] = JSON.parse(process.env.RESTRICTED_COMMANDS);
+};
