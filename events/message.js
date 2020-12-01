@@ -4,12 +4,10 @@ module.exports = async (client, message) => {
   if (message.author.bot || message.content.charAt(0) !== process.env.PREFIX)
     return;
   const args = message.content.substring(process.env.PREFIX.length).split(' ');
-
   if (!process.env.PERMITTED_GUILD_IDS.includes(message.guild.id))
     return message.reply(
       'Cuhlacios is not authorized to be used in this server.'
     );
-
   const command = client.commands.get(args[0]);
   if (command) {
     if (usedCommandRecently[message.author.id]) {

@@ -14,6 +14,7 @@ const init = async () => {
   await loader.registerEvents(client);
   await loader.checkDiscordStatus(client);
   await loader.registerRestrictedCommands(client);
+  loader.checkNvidiaDrop(client);
   try {
     await client.mongoose.init();
   } catch (err) {

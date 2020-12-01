@@ -1,6 +1,7 @@
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
 const axios = require('axios');
+const cheerio = require('cheerio');
 
 exports.registerModules = async client => {
   const moduleFiles = await readdir('./modules/');
@@ -55,4 +56,31 @@ exports.checkDiscordStatus = client => {
 
 exports.registerRestrictedCommands = client => {
   client['restrictedCommands'] = JSON.parse(process.env.RESTRICTED_COMMANDS);
+};
+
+exports.checkNvidiaDrop = client => {
+  client.interval = setInterval(async () => {
+    let res;
+    try {
+      res = await axios.get(
+        'https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402'
+      );
+    } catch {
+      clearInterval(client.interval);
+      return;
+    }
+    if (!res.data.includes('Coming Soon')) {
+      for (let i = 0; i < 200; i++) {
+        let spamMessage = '';
+        while (spamMessage.length <= 2000)
+          spamMessage += `@everyone AYO FUCKING FAGRAYSTS THE SHIT IS IN STOCK GO FUCKING COOOOPPP!!!! @everyone https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402 `;
+        spamMessage = spamMessage.substring(0, 2000);
+        client.channels.cache
+          .get(process.env.SPAM_CHANNEL_ID)
+          .send(spamMessage);
+      }
+      clearInterval(client.interval);
+    }
+    console.log('checked.');
+  }, parseInt(process.env.CHECK_NVIDIA_DELAY));
 };
