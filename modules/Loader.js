@@ -59,29 +59,30 @@ exports.registerRestrictedCommands = client => {
 };
 
 exports.checkNvidiaDrop = client => {
-  client.interval = setInterval(async () => {
-    let res;
-    try {
-      res = await axios.get(
+  client.interval = setInterval(() => {
+    axios
+      .get(
         'https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402'
-      );
-    } catch (e) {
-      console.log(e);
-      // clearInterval(client.interval);
-      return;
-    }
-    if (!res.data.includes('Coming Soon')) {
-      for (let i = 0; i < 200; i++) {
-        let spamMessage = '';
-        while (spamMessage.length <= 2000)
-          spamMessage += `@everyone AYO FUCKING FAGRAYSTS THE SHIT IS IN STOCK GO FUCKING COOOOPPP!!!! @everyone https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402 `;
-        spamMessage = spamMessage.substring(0, 2000);
-        client.channels.cache
-          .get(process.env.SPAM_CHANNEL_ID)
-          .send(spamMessage);
-      }
-      clearInterval(client.interval);
-    }
-    console.log('checked.');
+      )
+      .then(res => {
+        if (!res.data.includes('Coming Soon')) {
+          for (let i = 0; i < 200; i++) {
+            let spamMessage = '';
+            while (spamMessage.length <= 2000)
+              spamMessage += `@everyone AYO FUCKING FAGRAYSTS THE SHIT IS IN STOCK GO FUCKING COOOOPPP!!!! @everyone https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402 `;
+            spamMessage = spamMessage.substring(0, 2000);
+            client.channels.cache
+              .get(process.env.SPAM_CHANNEL_ID)
+              .send(spamMessage);
+          }
+          clearInterval(client.interval);
+        }
+        console.log('checked.');
+      })
+      .catch(err => {
+        console.log(err);
+        // clearInterval(client.interval);
+        return;
+      });
   }, parseInt(process.env.CHECK_NVIDIA_DELAY));
 };
