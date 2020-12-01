@@ -59,12 +59,17 @@ exports.registerRestrictedCommands = client => {
 };
 
 exports.checkNvidiaDrop = client => {
-  console.log('reached here called func');
   client.interval = setInterval(() => {
     console.log('reached here');
     axios
       .get(
-        'https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402'
+        'https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402',
+        {
+          headers: {
+            'user-agent':
+              'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36 OPR/72.0.3815.186'
+          }
+        }
       )
       .then(res => {
         if (!res.data.includes('Coming Soon')) {
