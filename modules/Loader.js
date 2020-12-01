@@ -1,7 +1,6 @@
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
 const axios = require('axios');
-const cheerio = require('cheerio');
 
 exports.registerModules = async client => {
   const moduleFiles = await readdir('./modules/');
