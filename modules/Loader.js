@@ -56,3 +56,33 @@ exports.checkDiscordStatus = client => {
 exports.registerRestrictedCommands = client => {
   client['restrictedCommands'] = JSON.parse(process.env.RESTRICTED_COMMANDS);
 };
+
+exports.checkNvidiaDrop = client => {
+  client.interval = setInterval(() => {
+    console.log('reached here');
+    axios
+      .get(
+        'https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p'
+      )
+      .then(res => {
+        if (!res.data.includes('Coming Soon')) {
+          for (let i = 0; i < 5; i++) {
+            let spamMessage = '';
+            while (spamMessage.length <= 2000)
+              spamMessage += `@everyone AYO FUCKING FAGRAYSTS THE SHIT IS IN STOCK GO FUCKING COOOOPPP!!!! @everyone https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402 `;
+            spamMessage = spamMessage.substring(0, 2000);
+            client.channels.cache
+              .get(process.env.SPAM_CHANNEL_ID)
+              .send(spamMessage);
+          }
+          clearInterval(client.interval);
+        }
+        console.log('checked.');
+      })
+      .catch(err => {
+        console.log(err);
+        // clearInterval(client.interval);
+        return;
+      });
+  }, parseInt(process.env.CHECK_NVIDIA_DELAY));
+};
