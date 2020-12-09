@@ -14,12 +14,12 @@ const init = async () => {
   await loader.registerEvents(client);
   await loader.checkDiscordStatus(client);
   await loader.registerRestrictedCommands(client);
-  loader.checkNvidiaDrop(client);
   try {
     await client.mongoose.init();
   } catch (err) {
     await client.logger.warn('URI needs to be defined for mongoose.');
   }
+  await loader.checkNvidiaDrop(client);
   await client.login(process.env.TOKEN);
   client.scheduler.start(client);
 };
