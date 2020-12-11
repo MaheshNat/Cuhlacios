@@ -19,7 +19,6 @@ const init = async () => {
   } catch (err) {
     await client.logger.warn('URI needs to be defined for mongoose.');
   }
-  await loader.checkNvidiaDrop(client);
   await client.login(process.env.TOKEN);
   client.scheduler.start(client);
 };
