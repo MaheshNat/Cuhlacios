@@ -1,5 +1,5 @@
 const websites = [
-  'http://heeeeeeeey.com/',  
+  'http://heeeeeeeey.com/',   
   'http://tinytuba.com/',
   'http://corndog.io/',
   'https://alwaysjudgeabookbyitscover.com',
