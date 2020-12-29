@@ -63,7 +63,7 @@ const websites = [
   'http://notdayoftheweek.com/',
   'http://www.amialright.com/',
   'http://nooooooooooooooo.com/',
-  'https://greatbignothing.com/'
+  'https://greatbignothing.com/',
 ];
 
 module.exports = {
@@ -73,5 +73,5 @@ module.exports = {
     message.channel.send(
       websites[Math.floor(Math.random() * websites.length) + 1]
     );
-  }
+  },
 };
