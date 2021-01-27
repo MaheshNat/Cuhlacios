@@ -8,9 +8,9 @@ client.loader = require('./modules/Loader');
 
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const userRouter = require('./routes/user');
 const pingRouter = require('./routes/ping');
+const tradesRouter = require('./routes/trades');
 const PORT = process.env.PORT || 8080;
 
 const init = async () => {
@@ -35,6 +35,7 @@ const init = async () => {
   app.use(cors());
   app.use('/user', userRouter);
   app.use('/ping', pingRouter);
+  app.use('/trades', tradesRouter);
   app.listen(PORT, () => {
     client.logger.ready(`Listening on port ${PORT}.`);
   });
