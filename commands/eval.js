@@ -1,7 +1,7 @@
 module.exports = {
   name: 'eval',
   description: 'Evaluates code following command in javascript',
-  execute(message, args) {
+  execute(message, args, client) {
     if (message.author.id !== process.env.OWNER_USER_ID)
       return message.reply('git good.');
     let code = args.slice(1, args.length).join(' ');
@@ -12,5 +12,5 @@ module.exports = {
     } catch (err) {
       message.channel.send(`ERROR!\n${err}`, { code: 'javascript' });
     }
-  }
+  },
 };
