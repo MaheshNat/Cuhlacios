@@ -1,1 +1,1 @@
-web: node cuhlacioBot.js
+worker: node cuhlacioBot.js
