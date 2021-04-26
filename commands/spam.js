@@ -25,7 +25,8 @@ module.exports = {
     if (!process.env.PERMITTED_SPAM_USER_IDS.includes(message.author.id))
       return message.reply('You are not permitted to use the spam command.');
     for (let i = 0; i < length; i++) {
-      await message.channel.send(spamMessage).then(message => {
+      if (client.stopped) break;
+      await message.channel.send(spamMessage).then((message) => {
         let args = message.content
           .substring(process.env.PREFIX.length)
           .split(' ');
@@ -33,5 +34,5 @@ module.exports = {
           client.commands.get(args[0]).execute(message, args, client);
       });
     }
-  }
+  },
 };
