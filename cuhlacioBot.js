@@ -5,6 +5,8 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 client.mongoose = require('./utils/mongoose');
 client.loader = require('./modules/Loader');
+const OpenAI = require('openai-api');
+client.openai = new OpenAI(process.env.OPENAI_API_KEY);
 
 const express = require('express');
 const cors = require('cors');
